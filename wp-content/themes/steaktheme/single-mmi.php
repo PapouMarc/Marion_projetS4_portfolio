@@ -91,32 +91,36 @@
             
 
                     $logiciels = get_post_meta(get_the_ID(), 'logiciels', true);
-
-                    if (in_array('Adobe Photoshop', $logiciels)) {
-                        echo '<img src="' . esc_url(wp_get_attachment_image_url(84, 'thumbnail')) . '" alt="Photoshop Icon">';
-                    }
-
-                    if (in_array('Adobe Illustrator', $logiciels)) {
-                        echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(79, 'thumbnail')) . '" alt="Illustrator Icon">';
-                    }
-
-                    if (in_array('Adobe In design', $logiciels)) {
-                        echo '<img src="' . esc_url(wp_get_attachment_image_url(83, 'thumbnail')) . '" alt="In Design Icon">';
-                    }
-                    if (in_array('After Effect', $logiciels)) {
-                        echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(78, 'thumbnail')) . '" alt="After Effect Icon">';
-                    }
-
-                    if (in_array('Figma', $logiciels)) {
-                        echo '<img src="' . esc_url(wp_get_attachment_image_url(82, 'thumbnail')) . '" alt="Figma Icon">';
-                    }
-
-                    if (in_array('Pinterest', $logiciels)) {
-                        echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(80, 'thumbnail')) . '" alt="Pinterest Icon">';
-                    }
-
-                    if (in_array('Crayon', $logiciels)) {
-                        echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(85, 'thumbnail')) . '" alt="Pinterest Icon">';
+                    
+                    foreach ($logiciels as $logiciel_icon)//on passe en revu tout le contenu du tableau $logiciels
+			        {   
+                        //pour chaque element on determine l image à afficher
+                        switch($logiciel_icon)
+                        {
+                            case 'Adobe Photoshop':
+                                echo '<img src="' . esc_url(wp_get_attachment_image_url(84, 'thumbnail')) . '" alt="Photoshop Icon">';
+                                break;
+                            case 'Adobe Illustrator':
+                                echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(79, 'thumbnail')) . '" alt="Illustrator Icon">';
+                                break;
+                            case 'Adobe In design':
+                                echo '<img src="' . esc_url(wp_get_attachment_image_url(83, 'thumbnail')) . '" alt="In Design Icon">';
+                                break;
+                            case 'After Effect':
+                                echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(78, 'thumbnail')) . '" alt="After Effect Icon">';
+                                break;            
+                            case 'Figma':
+                                echo '<img src="' . esc_url(wp_get_attachment_image_url(82, 'thumbnail')) . '" alt="Figma Icon">';
+                                break;
+                            case 'Pinterest':
+                                echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(80, 'thumbnail')) . '" alt="Pinterest Icon">';
+                                break;
+                            case 'Crayon':
+                                echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(85, 'thumbnail')) . '" alt="Pinterest Icon">';
+                                break;
+                            default://si l element ne correspond à aucun autre on peut lui attribuer une image par defaut
+                                echo '<img src="URL_LOGICIEL_INCONNU_A_COMPLETER.png" alt="'. $logiciel_icon .' Icon">';
+                        }
                     }
                     ?>
                     
