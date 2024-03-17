@@ -1,9 +1,11 @@
 <?php
     /*
-    Template Name: test_page
+    Template Name: testpage
     */
-    define( 'WP_DEBUG', true ); // permet de forcer le debugage de la page en cas d'erreur
 
+    
+    define( 'WP_DEBUG', true ); // permet de forcer le debugage de la page en cas d'erreur
+     echo 'Page de debug<br/><br/>';
 
     /**
      * Retrieves a category object by category slug.
@@ -24,7 +26,7 @@
     }
 
 
-     echo 'Page de debug<br/><br/>';
+ 
 
      //Pour afficher la liste des catégores en format html
     $args_cat = array(
@@ -43,8 +45,7 @@
     */
     $cat_name = 'Cours';
     $terms = array(
-        'name' => $cat_name, //pour trier par nom
-        'taxonomy' => 'category'
+        'name' => $cat_name //pour trier par nom
     );
     $cat_detail = get_categories( $args = $terms );
     echo '<hr> list by get_categories<br/>';
@@ -113,15 +114,20 @@
     */
     
     $cat_slug = 'physique-chimie';
-    $cat_detail = get_category_by_slug_marion( $cat_slug,'articlemmi' );
-    echo '<hr> list by get_category_by_slug<br/>';
-    print_r($cat_detail );
+    $cat_detail = get_category_by_slug_marion( $cat_slug );
+    echo '<hr> list by get_category_by_slug_marion<br/>';
+    print_r($cat_detail->term_id);
     echo '<br/>';
     $args = array (
         'showposts' => '20',
-        'cat' => $cat_detail->term_id
+        'cat' => $cat_detail->term_id,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'category',
+                'operator' => 'EXISTS'
+            )),
     );
-    $the_query = new WP_Query( $args );
+    $the_query = new WP_query( $args );
     echo '<hr><br/>Nombre de post:';
     print_r($the_query->have_posts());
     echo '<br/>';
@@ -136,4 +142,3 @@
        }
     }
     wp_reset_postdata();
-?>
