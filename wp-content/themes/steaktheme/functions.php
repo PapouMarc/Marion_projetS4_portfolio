@@ -10,31 +10,7 @@
     }
     add_action( 'init', 'register_my_menu', 0 );
 
-    function create_custom_taxonomy() {
-        $labels = array(
-            'name' => _x( 'Articles MMI', 'taxonomy general name' ),
-            'singular_name' => _x( 'Article MMI', 'taxonomy singular name' ),
-            'search_items' =>  __( 'Search Articles MMI' ),
-            'all_items' => __( 'All Articles MMI' ),
-            'parent_item' => __( 'Parent Article MMI' ),
-            'parent_item_colon' => __( 'Parent Article MMI:' ),
-            'edit_item' => __( 'Edit Article MMI' ), 
-            'update_item' => __( 'Update Article MMI' ),
-            'add_new_item' => __( 'Add New Article MMI' ),
-            'new_item_name' => __( 'New Article MMI Name' ),
-            'menu_name' => __( 'Articles MMI' ),
-        );    
     
-        register_taxonomy('articlesmmi', array('post'), array(
-            'hierarchical' => true,
-            'labels' => $labels,
-            'show_ui' => true,
-            'show_admin_column' => true,
-            'query_var' => true,
-            'rewrite' => array( 'slug' => 'articlesmmi' ),
-        ));
-    }
-    add_action( 'init', 'create_custom_taxonomy', 0 );
 
    
     function enqueue_tailwind_css() {
@@ -56,6 +32,7 @@ function process_contact_form() {
 		$content = esc_textarea( stripslashes( $_POST['content'] ) );
 
         // Construisez le contenu de l'e-mail
+$message="";
 	  	$message .= "\nEmail: $mail\n";
         $message = "De: $lastname $surname\n";
         $message .= "\nMessage:\n$content";

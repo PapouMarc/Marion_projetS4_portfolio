@@ -11,8 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <?php wp_head(); ?>
 </head>
 
@@ -24,8 +23,25 @@
         <a href="<?php echo esc_url(home_url('/')); ?>">
           <img class="lg:w-[100px] w-[150px]" src="<?php echo wp_get_attachment_url(90); ?>" alt="img" />
         </a>
+<div class="sm:header-mobileul">
+          <?php
+          wp_nav_menu(
+            array(
+              'theme_location' => 'header-menu',
+            )
+          );
+          ?>
+        </div>
+      </header>
 
-        <!-- Menu hamburger pour les écrans mobiles -->
+
+
+      <!-- <header class="grid-header mx-[4rem] sm:mx-[2rem] mt-2">
+        <a href="<?php echo esc_url(home_url('/')); ?>">
+           <img class="lg:w-[100px] w-[150px]" src="<?php echo wp_get_attachment_url(90); ?>" alt="img" /> 
+        </a>
+
+        Menu hamburger pour les écrans mobiles
         <div id="mobile-menu-toggle" class="md:hidden grid md:justify-self-end">
           <button class="text-white p-2 focus:outline-none">
             <span class="h-[2px] w-[20px] my-2 bg-gris block"></span>

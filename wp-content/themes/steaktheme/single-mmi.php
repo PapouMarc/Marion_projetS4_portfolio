@@ -67,9 +67,11 @@
             <div class="mb-[4rem] mt-[2rem] grid grid-cols-1 gap-[2rem] justify-items-center content-between ">
                 <!-- <?php the_field('logiciels'); ?> -->
 
-                <div class="flex flex-wrap flex-row-reverse gap-[2rem] justify-center">
+                <div class="flex flex-wrap  gap-[2rem] justify-center">
                     <?php
-                    // Récupérer les termes associés à l'article que si cest une taxonomie
+                    // flex-row-reverse avec les boucles if pour le style de la div au dessus sinon pas besoin avec la correction de papou
+
+                    //Récupérer les termes associés à l'article que si cest une taxonomie
                     // $terms = get_the_terms(get_the_ID(), 'logiciels');
             
                     // if ($terms && !is_wp_error($terms)) {
@@ -116,7 +118,7 @@
                                 echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(80, 'thumbnail')) . '" alt="Pinterest Icon">';
                                 break;
                             case 'Crayon':
-                                echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(85, 'thumbnail')) . '" alt="Pinterest Icon">';
+                                echo '<img class="w-[50px]" src="' . esc_url(wp_get_attachment_image_url(85, 'thumbnail')) . '" alt="Crayon Icon">';
                                 break;
                             default://si l element ne correspond à aucun autre on peut lui attribuer une image par defaut
                                 echo '<img src="URL_LOGICIEL_INCONNU_A_COMPLETER.png" alt="'. $logiciel_icon .' Icon">';
