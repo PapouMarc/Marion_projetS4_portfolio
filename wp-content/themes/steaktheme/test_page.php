@@ -3,6 +3,27 @@
     Template Name: test_page
     */
     define( 'WP_DEBUG', true ); // permet de forcer le debugage de la page en cas d'erreur
+
+
+    /**
+     * Retrieves a category object by category slug.
+     *
+     * @since 2.3.0
+     *
+     * @param string $slug The category slug.
+     * @return object|false Category data object on success, false if not found.
+     */
+    function get_category_by_slug_marion( $slug ,$cat_term='category') {
+        $category = get_term_by( 'slug', $slug, $cat_term );
+
+        if ( $category ) {
+            _make_cat_compat( $category );
+        }
+
+        return $category;
+    }
+
+
      echo 'Page de debug<br/><br/>';
 
      //Pour afficher la liste des catégores en format html
@@ -22,7 +43,8 @@
     */
     $cat_name = 'Cours';
     $terms = array(
-        'name' => $cat_name //pour trier par nom
+        'name' => $cat_name, //pour trier par nom
+        'taxonomy' => 'category'
     );
     $cat_detail = get_categories( $args = $terms );
     echo '<hr> list by get_categories<br/>';
@@ -91,7 +113,7 @@
     */
     
     $cat_slug = 'physique-chimie';
-    $cat_detail = get_category_by_slug( $cat_slug );
+    $cat_detail = get_category_by_slug_marion( $cat_slug,'articlemmi' );
     echo '<hr> list by get_category_by_slug<br/>';
     print_r($cat_detail );
     echo '<br/>';
