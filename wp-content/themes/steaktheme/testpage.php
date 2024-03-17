@@ -29,10 +29,11 @@
  
 
      //Pour afficher la liste des catégores en format html
+    $cat_taxonomie = 'category';
     $args_cat = array(
 		'echo'                => 0,
 		'style'               => '', //mettre liste à la place de '' pour avoir un formatage ul
-		'taxonomy'            => 'category',
+		'taxonomy'            => $cat_taxonomie,
 	);     
     $list_cats = wp_list_categories( $args = $args_cat );
     echo '<hr> list by wp_list_categories<br/>';
@@ -44,9 +45,10 @@
 
     */
     $cat_name = 'Cours';
+    $cat_taxonomie = 'category';
     $terms = array(
         'name' => $cat_name, //pour trier par nom
-        'taxonomy' => 'category'
+        'taxonomy' => $cat_taxonomie
     );
     $cat_detail = get_categories( $args = $terms );
     echo '<hr> list by get_categories<br/>';
@@ -67,8 +69,9 @@
     https://developer.wordpress.org/reference/functions/get_terms/
     */
     $cat_description = 'Programme';
+    $cat_taxonomie = 'category';
     $terms = get_terms( array(
-        'taxonomy' => 'category',
+        'taxonomy' => $cat_taxonomie,
         'hide_empty' => false,
         'orderby' => 'name',
         'order' => 'ASC',
@@ -93,7 +96,8 @@
     A partir de fonction interne wordpress
     */
     $cat_slug = 'cryptomonnaie';
-    $cat_detail = get_category_by_slug_marion( $cat_slug );
+    $cat_taxonomie = 'category';
+    $cat_detail = get_category_by_slug_marion( $cat_slug,$cat_taxonomie );
     echo '<hr> list by get_category_by_slug_marion<br/>';
     print_r($cat_detail );
     echo '<br/>';
@@ -115,7 +119,8 @@
     */
     
     $cat_slug = 'physique-chimie';
-    $cat_detail = get_category_by_slug_marion( $cat_slug );
+    $cat_taxonomie = 'category';
+    $cat_detail = get_category_by_slug_marion( $cat_slug,$cat_taxonomie );
     echo '<hr> list by get_category_by_slug_marion<br/>';
     print_r($cat_detail->term_id);
     echo '<br/>';
@@ -124,7 +129,7 @@
         'cat' => $cat_detail->term_id,
         'tax_query' => array(
             array(
-                'taxonomy' => 'category',
+                'taxonomy' => $cat_taxonomie,
                 'operator' => 'EXISTS'
             )),
     );
