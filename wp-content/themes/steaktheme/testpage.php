@@ -3,7 +3,7 @@
     Template Name: testpage
     */
 
-    
+
     define( 'WP_DEBUG', true ); // permet de forcer le debugage de la page en cas d'erreur
      echo 'Page de debug<br/><br/>';
 
@@ -45,7 +45,8 @@
     */
     $cat_name = 'Cours';
     $terms = array(
-        'name' => $cat_name //pour trier par nom
+        'name' => $cat_name, //pour trier par nom
+        'taxonomy' => 'category'
     );
     $cat_detail = get_categories( $args = $terms );
     echo '<hr> list by get_categories<br/>';
@@ -92,8 +93,8 @@
     A partir de fonction interne wordpress
     */
     $cat_slug = 'cryptomonnaie';
-    $cat_detail = get_category_by_slug( $cat_slug );
-    echo '<hr> list by get_category_by_slug<br/>';
+    $cat_detail = get_category_by_slug_marion( $cat_slug );
+    echo '<hr> list by get_category_by_slug_marion<br/>';
     print_r($cat_detail );
     echo '<br/>';
     //trap l id
